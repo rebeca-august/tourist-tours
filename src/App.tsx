@@ -1,12 +1,21 @@
 import React, { useState, useEffect } from 'react'
 import Loading from './Loading'
 import Tours from './Tours'
-// ATTENTION!!!!!!!!!!
-// I SWITCHED TO PERMANENT DOMAIN
+
+export type Tour = {
+  id: string
+  name: string
+  info: string
+  image: string
+  price: string
+}
+export type RemoveTour = (id: string) => void
+
 const url = 'https://course-api.com/react-tours-project'
+
 function App() {
   const [loading, setLoading] = useState(true)
-  const [tours, setTours] = useState([])
+  const [tours, setTours] = useState<Tour[]>([])
 
   const fetchData = async () => {
     setLoading(true)
@@ -30,7 +39,7 @@ function App() {
     )
   }
 
-  const removeTour = (id) => {
+  const removeTour: RemoveTour = (id) => {
     const newTours = tours.filter((tour) => tour.id !== id)
     setTours(newTours)
   }

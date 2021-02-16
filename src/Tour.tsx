@@ -1,7 +1,14 @@
 import React, { useState } from 'react'
+import { RemoveTour, Tour as TourType } from './App'
 
-const Tour = ({ id, image, info, price, name, removeTour }) => {
+type Props = {
+  tour: TourType
+  removeTour: RemoveTour
+}
+
+const Tour = ({ tour, removeTour }: Props) => {
   const [readMore, setReadMore] = useState(false)
+  const { id, image, info, price, name } = tour
 
   return (
     <article className="single-tour">
